@@ -90,9 +90,10 @@
           var script = document.createElement("script");
           script.src = loaderUrl;
           script.onload = () => {
-              createUnityInstance(canvas, config, (progress) => {
+              window.gameInstance = createUnityInstance(canvas, config, (progress) => {
                   progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
+                  window.gameInstance = unityInstance; //This is where you store the object
                   loadingBar.style.display = "none";
                   fullscreenButton.onclick = () => {
                       unityInstance.SetFullscreen(1);
@@ -103,7 +104,7 @@
           };
           document.body.appendChild(script);
       </script>
-      <div style="border: solid 1px black; width: 200px; height: 30px; margin: auto; text-align: center" onclick="unityInstance.SendMessage('JavascriptHook', 'TintRed')">RED</div>
-      <div style="border: solid 1px black; width: 200px; height: 30px; margin: auto; text-align: center" onclick="unityInstance.SendMessage('JavascriptHook', 'TintGreen')">GREEN</div>
+      <div style="border: solid 1px black; width: 200px; height: 30px; margin: auto; text-align: center" onclick="gameInstance.SendMessage('JavascriptHook', 'TintRed')">RED</div>
+      <div style="border: solid 1px black; width: 200px; height: 30px; margin: auto; text-align: center" onclick="gameInstance.SendMessage('JavascriptHook', 'TintGreen')">GREEN</div>
   </body>
 </html>
