@@ -104,8 +104,7 @@
           };
           document.body.appendChild(script);
       </script>
-      <div style="border: solid 1px black; width: 200px; height: 30px; margin: auto; text-align: center" onclick="window.gameInstance.SendMessage('JavascriptHook', 'TintRed')">RED</div>
+      <div style="border: solid 1px black; width: 200px; height: 30px; margin: auto; text-align: center" onclick="gameInstance.SendMessage('JavascriptHook', 'TintRed')">RED</div>
       <div style="border: solid 1px black; width: 200px; height: 30px; margin: auto; text-align: center" onclick="gameInstance.SendMessage('JavascriptHook', 'TintGreen')">GREEN</div>
-      <button type="button" onclick="gameInstance.SendMessage('JavascriptHook', 'TintRed')">Click</button>
   </body>
 </html>
