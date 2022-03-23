@@ -22,6 +22,27 @@
               <div id="unity-fullscreen-button"></div>
               <div id="unity-build-title">VPSProjectTesting</div>
           </div>
+          <div>
+              <input placeholder="Enter text..." id="htmlinput"><button onclick="sendBackMessage()">Send to Unity</button>
+          </div>
+          <script>
+              function sendBackMessage() {
+                  var message = document.getElementById("htmlinput").value;
+                  console.log("Sending message to Unity: " + message);
+                  unityInstance.SendMessage("Bridge", "SendToUnity", message);
+              }
+          </script>
+          <script>
+              var recaptureInputAndFocus = function () {
+                  var canvas = document.getElementById("#canvas");
+                  if (canvas) {
+                      canvas.setAttribute("tabindex", "1");
+                      canvas.focus();
+                  } else
+                      setTimeout(recaptureInputAndFocus, 100);
+              }
+              recaptureInputAndFocus();
+          </script>
       </div>
       <script>
           var container = document.querySelector("#unity-container");
@@ -102,27 +123,6 @@
               });
           };
           document.body.appendChild(script);
-      </script>
-      <div>
-          <input placeholder="Enter text..." id="htmlinput"><button onclick="sendBackMessage()">Send to Unity</button>
-      </div>
-      <script>
-          function sendBackMessage() {
-              var message = document.getElementById("htmlinput").value;
-              console.log("Sending message to Unity: " + message);
-              unityInstance.SendMessage("Bridge", "SendToUnity", message);
-          }
-      </script>
-      <script>
-          var recaptureInputAndFocus = function () {
-              var canvas = document.getElementById("#canvas");
-              if (canvas) {
-                  canvas.setAttribute("tabindex", "1");
-                  canvas.focus();
-              } else
-                  setTimeout(recaptureInputAndFocus, 100);
-          }
-          recaptureInputAndFocus();
       </script>
   </body>
 </html>
